@@ -47,20 +47,21 @@ router.post('/', async (req, res) => {
     });
 
     // Email content
-    const mailOptions = {
-      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
-      to: `${process.env.EMAIL_USER}, partner@example.com`, // You + Partner
-      subject: 'New Contact Form Submission',
-      html: `
-        <h3>New Lead from Website</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company || 'N/A'}</p>
-        <p><strong>Role:</strong> ${role || 'N/A'}</p>
-        <p><strong>Message:</strong> ${message || 'No message'}</p>
-        <p><small>Submitted on ${new Date().toLocaleString()}</small></p>
-      `
-    };
+  const mailOptions = {
+  from: `"Website Contact" <${process.env.EMAIL_USER}>`,
+  to: `${process.env.EMAIL_USER}, ${process.env.PARTNER_EMAIL}`, // You + Partner from .env
+  subject: 'New Contact Form Submission to your A9VA Website',
+  html: `
+    <h3>New Lead from Website</h3>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Company:</strong> ${company || 'N/A'}</p>
+    <p><strong>Role:</strong> ${role || 'N/A'}</p>
+    <p><strong>Message:</strong> ${message || 'No message'}</p>
+    <p><small>Submitted on ${new Date().toLocaleString()}</small></p>
+  `
+};
+
 
     // Send email
     await transporter.sendMail(mailOptions);
