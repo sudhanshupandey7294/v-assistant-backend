@@ -24,8 +24,8 @@ mongoose.connect(process.env.MONGO_URI, {
 const contactRouter = require('./routes/contact');
 app.use('/api/contact', contactRouter);
 
-const chatRoutes = require('./routes/chatRoutes');
-app.use('/api/chat', chatRoutes);
+// const chatRoutes = require('./routes/chatRoutes');
+// app.use('/api/chat', chatRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running ✅");
